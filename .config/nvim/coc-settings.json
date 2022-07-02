@@ -1,0 +1,4 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["typescript", "typescriptreact"],
+  "typescript.preferences.importModuleSpecifier": "relative"
+}
