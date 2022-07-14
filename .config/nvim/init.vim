@@ -1,11 +1,8 @@
+" ------------ lua files -------------
 lua require('plugins')
 lua require('mappings')
 
 " ------------ GENERAL------------
-if has('termguicolors')
-	set termguicolors
-endif
-
 set nu
 set noshowmode
 set mouse=a
