@@ -1,11 +1,58 @@
+local opt = vim.opt
+
+opt.termguicolors = true
+
+-- add:
+-- Indent-blankline.nvim
+-- which-key (??)
+-- impatient.nvim
+-- alpha-nvim
+--
+--
+-- color schemes
+-- https://github.com/NvChad/nvchad.github.io/blob/src/static/img/screenshots/radium1.png
+-- https://github.com/NvChad/nvchad.github.io/blob/src/static/img/screenshots/four_Themes.png
+--
+
 return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+    -- Color schemes and appearance
+  use 'folke/tokyonight.nvim'
+  -- use 'itchyny/vim-gitbranch'
+  use 'romgrk/barbar.nvim'
+  use 'kyazdani42/nvim-web-devicons'
+
+  -- use 'lukas-reineke/indent-blankline.nvim'
+  -- require("indent_blankline").setup {
+  --   -- for example, context is off by default, use this to turn it on
+  --   show_current_context = true,
+  --   show_current_context_start = true,
+  -- }
+
+  -- vim.opt.list = true
+  -- vim.opt.listchars:append("space:⋅")
+
+  use {
+    'norcalli/nvim-colorizer.lua', 
+    after = 'tokyonight.nvim',
+    config = function()
+      require('colorizer').setup()
+    end
+  }
+
+  -- lualine
+  use {
+    -- TODO set full file name relative to github dir
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+
   -- general
   use 'tpope/vim-commentary'
   use 'raimondi/delimitmate'
-  use 'Yggdroot/indentLine'
+  use 'Yggdroot/indentLine'  -- TODO replace with indent-blankline.nvim
 
   use 'dstein64/vim-startuptime'
 
@@ -38,17 +85,6 @@ return require('packer').startup(function()
   -- python
   use 'Vimjas/vim-python-pep8-indent'
 
-  -- Color schemes and appearance
-  use 'folke/tokyonight.nvim'
-  use 'itchyny/vim-gitbranch'
-  use 'romgrk/barbar.nvim'
-  use 'kyazdani42/nvim-web-devicons'
-
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
-
   -- auto dark mode
   use 'f-person/auto-dark-mode.nvim'
   local auto_dark_mode = require('auto-dark-mode')
@@ -65,9 +101,5 @@ return require('packer').startup(function()
           end,
   })
   auto_dark_mode.init()
-
-  -- lualine
-  require('lualine').setup()  -- TODO set up configuration
-  -- full file name relative to github dir
 
 end)
