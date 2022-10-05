@@ -3,6 +3,7 @@ curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 brew upgrade neovim
 brew upgrade fzf
 brew install ripgrep
+brew install stow
 
 # fzf bindings
 /usr/local/opt/fzf/install
@@ -45,5 +46,8 @@ else
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
     exec zsh
 fi
+
+stow shell
+stow config
 
 echo "Finished installation"
