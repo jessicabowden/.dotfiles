@@ -1,6 +1,7 @@
 " ------------ lua files -------------
 lua require('plugins')
 lua require('mappings')
+lua require('startup_screen')
 
 " ------------ GENERAL------------
 set nu

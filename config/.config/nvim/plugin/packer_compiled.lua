@@ -44,8 +44,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/Users/jessicagb/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/Users/jessicagb/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/Users/jessicagb/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/Users/jessicagb/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/Users/jessicagb/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/Users/jessica/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/Users/jessica/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/Users/jessica/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/Users/jessica/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/Users/jessica/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -69,34 +69,34 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["alpha-nvim"] = {
+    loaded = true,
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/alpha-nvim",
+    url = "https://github.com/goolord/alpha-nvim"
+  },
   ["auto-dark-mode.nvim"] = {
     loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/auto-dark-mode.nvim",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/auto-dark-mode.nvim",
     url = "https://github.com/f-person/auto-dark-mode.nvim"
   },
   ["barbar.nvim"] = {
     loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/barbar.nvim",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/barbar.nvim",
     url = "https://github.com/romgrk/barbar.nvim"
   },
   ["coc.nvim"] = {
     loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/coc.nvim",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/coc.nvim",
     url = "https://github.com/neoclide/coc.nvim"
   },
   delimitmate = {
     loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/delimitmate",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/delimitmate",
     url = "https://github.com/raimondi/delimitmate"
-  },
-  indentLine = {
-    loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/indentLine",
-    url = "https://github.com/Yggdroot/indentLine"
   },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["nvim-colorizer.lua"] = {
@@ -104,62 +104,62 @@ _G.packer_plugins = {
     load_after = {},
     loaded = true,
     needs_bufread = false,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["popup.nvim"] = {
     loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/popup.nvim",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
     url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["tokyonight.nvim"] = {
     loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
   ["vim-commentary"] = {
     loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/vim-commentary",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
   },
   ["vim-prettier"] = {
     loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/vim-prettier",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/vim-prettier",
     url = "https://github.com/prettier/vim-prettier"
   },
   ["vim-python-pep8-indent"] = {
     loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/vim-python-pep8-indent",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/vim-python-pep8-indent",
     url = "https://github.com/Vimjas/vim-python-pep8-indent"
   },
   ["vim-startuptime"] = {
     loaded = true,
-    path = "/Users/jessicagb/.local/share/nvim/site/pack/packer/start/vim-startuptime",
+    path = "/Users/jessica/.local/share/nvim/site/pack/packer/start/vim-startuptime",
     url = "https://github.com/dstein64/vim-startuptime"
   }
 }

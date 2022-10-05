@@ -23,6 +23,15 @@ return require('packer').startup(function()
   -- use 'itchyny/vim-gitbranch'
   use 'romgrk/barbar.nvim'
   use 'kyazdani42/nvim-web-devicons'
+  use 'goolord/alpha-nvim'
+
+  -- use {
+  --     'goolord/alpha-nvim',
+  --     requires = { 'kyazdani42/nvim-web-devicons' },
+  --     config = function ()
+  --         -- require'alpha'.setup(require'alpha.themes.startify'.config)
+  --     end
+  -- }
 
   -- use 'lukas-reineke/indent-blankline.nvim'
   -- require("indent_blankline").setup {
