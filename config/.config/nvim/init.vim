@@ -30,3 +30,10 @@ let g:indentLine_leadingSpaceChar = '·'
 " ------------ REMAPPINGS ------------
 " set hlsearch
 nnoremap <CR> :noh<CR><CR>
+
+" let g:prettier#autoformat = 1
+
+let g:prettier#autoformat_config_present = 1
+let g:prettier#autoformat_require_pragma = 0
+
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"

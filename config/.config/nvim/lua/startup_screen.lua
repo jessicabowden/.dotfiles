@@ -15,7 +15,7 @@ local logo = {
 }
 
 local alpha = require("alpha")
-local dashboard = require("alpha.themes.dashboard")
+local dashboard = require("alpha.themes.theta")
 local config = dashboard.config
 
 local function pick_color()
@@ -23,7 +23,6 @@ local function pick_color()
     return colors[math.random(#colors)]
 end
 
-dashboard.section.header.val = logo
-dashboard.section.header.opts.hl = pick_color()
-
+dashboard.header.val = logo
+dashboard.header.opts.hl = pick_color()
 alpha.setup(config)
