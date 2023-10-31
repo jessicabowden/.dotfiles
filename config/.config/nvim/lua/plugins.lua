@@ -51,6 +51,8 @@ return require('packer').startup(function()
 
   use 'dstein64/vim-startuptime'
 
+  use 'github/copilot.vim'
+
   -- telescope
   use 'nvim-telescope/telescope.nvim'
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }  -- add requires telescope
@@ -79,8 +81,6 @@ return require('packer').startup(function()
   require("telescope").load_extension('file_browser')
 
   -- neovim lsp
-  use 'neovim/nvim-lspconfig'
-  
   use { 
     'neovim/nvim-lspconfig',
     requires = {

@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/Users/jessicabowden/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
+  ["copilot.vim"] = {
+    loaded = true,
+    path = "/Users/jessicabowden/.local/share/nvim/site/pack/packer/start/copilot.vim",
+    url = "https://github.com/github/copilot.vim"
+  },
   delimitmate = {
     loaded = true,
     path = "/Users/jessicabowden/.local/share/nvim/site/pack/packer/start/delimitmate",
