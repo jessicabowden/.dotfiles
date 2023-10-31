@@ -1,5 +1,4 @@
 # Install kitty term & essentials
-curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 brew upgrade neovim
 brew upgrade fzf
 brew install ripgrep
