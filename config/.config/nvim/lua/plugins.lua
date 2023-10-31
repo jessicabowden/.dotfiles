@@ -16,22 +16,17 @@ return require('packer').startup(function()
 
     -- Color schemes and appearance
   use 'folke/tokyonight.nvim'
-  -- use 'itchyny/vim-gitbranch'
-  use 'romgrk/barbar.nvim'
+  use 'sainnhe/sonokai'
+  use 'EdenEast/nightfox.nvim'
+
   use 'kyazdani42/nvim-web-devicons'
   use 'goolord/alpha-nvim'
 
   use 'nvim-treesitter/nvim-treesitter'
+  
 
   use 'lukas-reineke/indent-blankline.nvim'
-  require("indent_blankline").setup {
-    -- context is off by default, use this to turn it on
-    show_current_context = true,
-    show_current_context_start = true,
-    requires = {
-      'vim-treesitter/nvim-treesitter'
-    }
-  }
+  require("ibl").setup()
 
   use {
     'norcalli/nvim-colorizer.lua', 
@@ -40,6 +35,8 @@ return require('packer').startup(function()
       require('colorizer').setup()
     end
   }
+
+  vim.opt.termguicolors = true
 
   -- lualine
   use {
@@ -51,7 +48,6 @@ return require('packer').startup(function()
   -- general
   use 'tpope/vim-commentary'
   use 'raimondi/delimitmate'
-  use 'Yggdroot/indentLine'  -- TODO replace with indent-blankline.nvim
 
   use 'dstein64/vim-startuptime'
 
@@ -61,6 +57,11 @@ return require('packer').startup(function()
 
   use 'nvim-lua/plenary.nvim'
   use 'nvim-lua/popup.nvim'
+
+  use {
+    "nvim-telescope/telescope-file-browser.nvim",
+    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  }
 
   require('telescope').setup {
     extensions = {
@@ -75,14 +76,39 @@ return require('packer').startup(function()
   }
   require('telescope').load_extension('fzf')
 
-  -- coc
-  use { 'neoclide/coc.nvim', branch='release' }
+  require("telescope").load_extension('file_browser')
+
+  -- neovim lsp
+  use 'neovim/nvim-lspconfig'
   
-  -- typescript
-  use { 'prettier/vim-prettier', run = 'yarn install', }
+  use { 
+    'neovim/nvim-lspconfig',
+    requires = {
+      require'lspconfig'.pyright.setup{}
+    } 
+  }
+
+  use 'neovim/nvim-lspconfig'
+  use 'L3MON4D3/LuaSnip'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/nvim-cmp'
+
+  use 'mfussenegger/nvim-lint'
+  require('lint').linters_by_ft = {
+    markdown = {'pylint',}
+  }
+
+  vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    callback = function()
+      require("lint").try_lint()
+    end,
+  })
 
   -- python
-  -- use 'Vimjas/vim-python-pep8-indent'
+  use 'Vimjas/vim-python-pep8-indent'
 
   -- auto dark mode
   use 'f-person/auto-dark-mode.nvim'
@@ -92,11 +118,11 @@ return require('packer').startup(function()
           update_interval = 1000,
           set_dark_mode = function()
                   vim.api.nvim_set_option('background', 'dark')
-                  vim.cmd('colorscheme tokyonight')
+                  vim.cmd('colorscheme sonokai')
           end,
           set_light_mode = function()
                   vim.api.nvim_set_option('background', 'light')
-                  vim.cmd('colorscheme tokyonight')
+                  vim.cmd('colorscheme dawnfox')
           end,
   })
   auto_dark_mode.init()
