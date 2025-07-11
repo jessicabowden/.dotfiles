@@ -12,13 +12,13 @@ opt.cursorline = true
 
 -- Indentation
 opt.expandtab = true
-opt.shiftwidth = 2
-opt.tabstop = 2
+opt.shiftwidth = 4
+opt.tabstop = 4
 opt.softtabstop = 2
 opt.autoindent = true
-opt.smartindent = false -- Disable in favor of TreeSitter indent
-opt.cindent = false -- Disable C-style indenting
-opt.shiftround = true -- Round indent to multiple of shiftwidth
+opt.smartindent = false                      -- Disable in favor of TreeSitter indent
+opt.cindent = false                          -- Disable C-style indenting
+opt.shiftround = true                        -- Round indent to multiple of shiftwidth
 opt.backspace = { "indent", "eol", "start" } -- Allow backspace over everything
 
 -- Search
@@ -54,14 +54,3 @@ opt.timeoutlen = 300
 opt.wrap = false
 opt.list = true
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-
--- TypeScript/TSX specific settings
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "typescript", "typescriptreact", "tsx" },
-  callback = function()
-    vim.bo.shiftwidth = 2
-    vim.bo.tabstop = 2
-    vim.bo.softtabstop = 2
-    vim.bo.expandtab = true
-  end,
-}) 
