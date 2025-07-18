@@ -96,7 +96,7 @@ return {
               "help",
               "alpha",
               "dashboard",
-              "neo-tree",
+              "NvimTree",
               "Trouble",
               "lazy",
               "mason",
@@ -121,33 +121,41 @@ return {
   
     -- File explorer
     {
-      "nvim-neo-tree/neo-tree.nvim",
-      branch = "v3.x",
+      "nvim-tree/nvim-tree.lua",
+      cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFileToggle" },
       dependencies = {
-        "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
-        "MunifTanjim/nui.nvim",
       },
+      init = function()
+        vim.g.loaded_netrw = 1
+        vim.g.loaded_netrwPlugin = 1
+      end,
       config = function()
-        require("neo-tree").setup({
-          close_if_last_window = true,
-          popup_border_style = "rounded",
-          enable_git_status = true,
-          enable_diagnostics = true,
-          filesystem = {
-            filtered_items = {
-              visible = false,
-              hide_dotfiles = false,
-              hide_gitignored = false,
-            },
-            follow_current_file = {
-              enabled = true,
-            },
-            use_libuv_file_watcher = true,
+        require("nvim-tree").setup({
+          sort_by = "case_sensitive",
+          view = {
+            width = 30,
+            preserve_window_proportions = false,
           },
-          buffers = {
-            follow_current_file = {
-              enabled = true,
+          renderer = {
+            group_empty = true,
+          },
+          filters = {
+            dotfiles = false,
+          },
+          git = {
+            enable = true,
+          },
+          diagnostics = {
+            enable = true,
+          },
+          update_focused_file = {
+            enable = true,
+          },
+          actions = {
+            open_file = {
+              quit_on_open = false,
+              resize_window = true,
             },
           },
         })

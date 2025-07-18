@@ -59,8 +59,8 @@ map("n", "[d", vim.diagnostic.goto_prev)
 map("n", "]d", vim.diagnostic.goto_next)
 map("n", "<leader>q", vim.diagnostic.setloclist)
 
--- Neo-tree
-map("n", "<leader>e", "<cmd>Neotree toggle<CR>")
+-- File explorer
+map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
 
 -- Terminal
 map("n", "<leader>t", "<cmd>ToggleTerm<CR>")
