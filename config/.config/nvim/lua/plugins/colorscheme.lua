@@ -6,7 +6,7 @@ return {
         config = function()
             require("tokyonight").setup({
                 style = "storm",
-                transparent = false,
+                transparent = true,
                 terminal_colors = true,
                 styles = {
                     comments = { italic = true },
@@ -33,7 +33,7 @@ return {
         config = function()
             require("nightfox").setup({
                 options = {
-                    transparent = false,
+                    transparent = true,
                     terminal_colors = true,
                     dim_inactive = false,
                     styles = {
