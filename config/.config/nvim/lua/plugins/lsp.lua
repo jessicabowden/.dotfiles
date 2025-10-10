@@ -19,9 +19,14 @@ return {
   -- Mason LSP Config
   {
     "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim" },
+    dependencies = { 
+      "williamboman/mason.nvim",
+      "hrsh7th/cmp-nvim-lsp",
+    },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      
       require("mason-lspconfig").setup({
         ensure_installed = {
           "ts_ls",
@@ -34,93 +39,106 @@ return {
           "lua_ls",
         },
         automatic_installation = true,
+        handlers = {
+          -- Default handler for all servers
+          function(server_name)
+            vim.lsp.config[server_name] = {
+              capabilities = capabilities,
+            }
+            vim.lsp.enable(server_name)
+          end,
+          
+          -- Custom handlers for specific servers
+          ["ts_ls"] = function()
+            vim.lsp.config.ts_ls = {
+              capabilities = capabilities,
+              settings = {
+                typescript = {
+                  preferences = {
+                    importModuleSpecifier = "relative",
+                  },
+                },
+              },
+            }
+            vim.lsp.enable("ts_ls")
+          end,
+          
+          ["tailwindcss"] = function()
+            vim.lsp.config.tailwindcss = {
+              capabilities = capabilities,
+              filetypes = { "html", "css", "scss", "javascript", "typescript", "javascriptreact", "typescriptreact" },
+            }
+            vim.lsp.enable("tailwindcss")
+          end,
+          
+          ["html"] = function()
+            vim.lsp.config.html = {
+              capabilities = capabilities,
+              filetypes = { "html", "htmldjango" },
+            }
+            vim.lsp.enable("html")
+          end,
+          
+          ["jsonls"] = function()
+            vim.lsp.config.jsonls = {
+              capabilities = capabilities,
+              settings = {
+                json = {
+                  schemas = require("schemastore").json.schemas(),
+                  validate = { enable = true },
+                },
+              },
+            }
+            vim.lsp.enable("jsonls")
+          end,
+          
+          ["eslint"] = function()
+            vim.lsp.config.eslint = {
+              capabilities = capabilities,
+              on_attach = function(client, bufnr)
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                  buffer = bufnr,
+                  command = "EslintFixAll",
+                })
+              end,
+            }
+            vim.lsp.enable("eslint")
+          end,
+          
+          ["lua_ls"] = function()
+            vim.lsp.config.lua_ls = {
+              capabilities = capabilities,
+              settings = {
+                Lua = {
+                  diagnostics = {
+                    globals = { "vim" },
+                  },
+                  workspace = {
+                    library = vim.api.nvim_get_runtime_file("", true),
+                    checkThirdParty = false,
+                  },
+                  telemetry = {
+                    enable = false,
+                  },
+                },
+              },
+            }
+            vim.lsp.enable("lua_ls")
+          end,
+        },
       })
     end,
   },
 
-  -- LSP Configuration
+  -- LSP Configuration (nvim-lspconfig still needed as dependency)
   {
     "neovim/nvim-lspconfig",
     lazy = false,
-    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
     },
-    config = function()
-      local lspconfig = require("lspconfig")
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-      -- Ensure mason-lspconfig is loaded
-      local mason_lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
-      if not mason_lspconfig_ok then
-        vim.notify("mason-lspconfig not found", vim.log.levels.ERROR)
-        return
-      end
-      
-      -- Setup LSP servers manually (setup_handlers not available in this version)
-      local servers = {
-        ts_ls = {
-          settings = {
-            typescript = {
-              preferences = {
-                importModuleSpecifier = "relative",
-              },
-            },
-          },
-        },
-        tailwindcss = {
-          filetypes = { "html", "css", "scss", "javascript", "typescript", "javascriptreact", "typescriptreact" },
-        },
-        html = {
-          filetypes = { "html", "htmldjango" },
-        },
-        jsonls = {
-          settings = {
-            json = {
-              schemas = require("schemastore").json.schemas(),
-              validate = { enable = true },
-            },
-          },
-        },
-        eslint = {
-          on_attach = function(client, bufnr)
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              buffer = bufnr,
-              command = "EslintFixAll",
-            })
-          end,
-        },
-        lua_ls = {
-          settings = {
-            Lua = {
-              diagnostics = {
-                globals = { "vim" },
-              },
-              workspace = {
-                library = vim.api.nvim_get_runtime_file("", true),
-                checkThirdParty = false,
-              },
-              telemetry = {
-                enable = false,
-              },
-            },
-          },
-        },
-        cssls = {},
-        pyright = {},
-      }
-
-      -- Setup each server
-      for server_name, server_config in pairs(servers) do
-        local opts = vim.tbl_deep_extend("force", {
-          capabilities = capabilities,
-        }, server_config)
-        
-        lspconfig[server_name].setup(opts)
-      end
-    end,
   },
 
   -- TypeScript utilities

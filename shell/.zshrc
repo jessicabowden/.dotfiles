@@ -1,13 +1,10 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+#Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-# For rhodes installation
-export POETRY_HTTP_BASIC_ARTIFACT_USERNAME=jessicabowden
-export POETRY_HTTP_BASIC_ARTIFACT_PASSWORD=$(aws codeartifact get-authorization-token --domain-owner 254491760475 --domain abstract-data --query 'authorizationToken' --output text)
 
 # Display current directory as tab name, not the full path
 DISABLE_AUTO_TITLE="true"
@@ -28,7 +25,6 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k" 
 
 # ------ PLUGINS ------
@@ -64,7 +60,6 @@ export PATH="/usr/local/opt/sbt@0.13/bin:$PATH"
 
 [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
 
-# source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -74,5 +69,4 @@ export NVM_DIR="$HOME/.nvm"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# Added by Windsurf
-export PATH="/Users/jessicabowden/.codeium/windsurf/bin:$PATH"
+. "$HOME/.local/bin/env"
